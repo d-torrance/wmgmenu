@@ -15,3 +15,4 @@ install-sh
 missing
 wmgmenu
 wmgmenu.o
+wmgmenu-*.tar.gz

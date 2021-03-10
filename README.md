@@ -16,7 +16,7 @@ To use wmgmenu, edit `~/GNUstep/Default/WMRootMenu` to include a line
 such as:
 
 ```
-("freedesktop.org menu", OPEN_PLMENU, "|| wmgmenu"),
+(Applications, OPEN_PLMENU, "|| wmgmenu"),
 ```
 
 Alternatively, using WPrefs, navigate to "Applications Menu

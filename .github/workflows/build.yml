@@ -1,14 +1,15 @@
-name: build
+name: Build and test wmgmenu
 on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: install dependencies
+      - name: Install dependencies
         run: sudo apt install libgnome-menu-3-dev libwings-dev
-      - name: build
-        run: |
-          ./autogen.sh
-          ./configure
-          make distcheck
+      - name: Configure
+        run: ./autogen.sh && ./configure
+      - name: Build
+        run: make distcheck
+      - name: Smoke test
+        run: ./wmgmenu

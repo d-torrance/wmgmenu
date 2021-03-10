@@ -1,0 +1,5 @@
+bin_PROGRAMS = wmgmenu
+wmgmenu_SOURCES = wmgmenu.c
+
+AM_CFLAGS = $(GMENU_CFLAGS) $(WUTIL_CFLAGS)
+LIBS += $(GMENU_LIBS) $(WUTIL_LIBS)

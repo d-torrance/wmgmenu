@@ -53,7 +53,30 @@ WMPropList *treedir_to_plist(GMenuTreeDirectory *directory)
 			subdir = gmenu_tree_iter_get_directory(iter);
 			WMAddToPLArray(plist, treedir_to_plist(subdir));
 			gmenu_tree_item_unref(subdir);
-		} /* TODO - GMENU_TREE_ITEM_ALIAS */
+		} else if (type == GMENU_TREE_ITEM_ALIAS) {
+			GMenuTreeAlias *alias;
+			GMenuTreeItemType alias_type;
+
+			alias = gmenu_tree_iter_get_alias(iter);
+			alias_type =
+				gmenu_tree_alias_get_aliased_item_type(alias);
+			if (alias_type == GMENU_TREE_ITEM_ENTRY) {
+				GMenuTreeEntry *entry;
+
+				entry = gmenu_tree_alias_get_aliased_entry(
+					alias);
+				WMAddToPLArray(plist, entry_to_plist(entry));
+				gmenu_tree_item_unref(entry);
+			} else if (alias_type == GMENU_TREE_ITEM_DIRECTORY) {
+				GMenuTreeDirectory *subdir;
+
+				subdir = gmenu_tree_alias_get_aliased_directory(
+					alias);
+				WMAddToPLArray(plist, treedir_to_plist(subdir));
+				gmenu_tree_item_unref(subdir);
+			}
+			gmenu_tree_item_unref(alias);
+		}
 	}
 
 	return plist;

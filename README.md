@@ -1,3 +1,5 @@
+![workflow badge](https://github.com/d-torrance/wmgmenu/actions/workflows/build.yml/badge.svg)
+
 wmgmenu
 =======
 

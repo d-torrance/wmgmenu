@@ -10,6 +10,8 @@ jobs:
       - name: Configure
         run: ./autogen.sh && ./configure
       - name: Build
-        run: make distcheck
+        run: make
       - name: Smoke test
         run: ./wmgmenu
+      - name: Distribution check
+        run: make distcheck

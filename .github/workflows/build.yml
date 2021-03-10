@@ -12,6 +12,6 @@ jobs:
       - name: Build
         run: make
       - name: Smoke test
-        run: ./wmgmenu
+        run: sudo apt install gnome-menus && ./wmgmenu
       - name: Distribution check
         run: make distcheck

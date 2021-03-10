@@ -9,6 +9,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+WMPropList *entry_to_plist(GMenuTreeEntry *entry)
+{
+	GDesktopAppInfo *info;
+	const char *name;
+	char *cmd;
+
+	info = gmenu_tree_entry_get_app_info(entry);
+	name = g_app_info_get_display_name(G_APP_INFO(info));
+	cmd = wstrdup("gtk-launch ");
+	wstrappend(cmd, g_app_info_get_id(G_APP_INFO(info)));
+
+	return WMCreatePLArray(
+		WMCreatePLString(name),
+		WMCreatePLString("EXEC"),
+		WMCreatePLString(cmd),
+		NULL);
+}
+
 WMPropList *treedir_to_plist(GMenuTreeDirectory *directory)
 {
 	GMenuTreeIter *iter;
@@ -25,21 +43,10 @@ WMPropList *treedir_to_plist(GMenuTreeDirectory *directory)
 	     type = gmenu_tree_iter_next(iter)) {
 		if (type == GMENU_TREE_ITEM_ENTRY) {
 			GMenuTreeEntry *entry;
-			GDesktopAppInfo *info;
-			const char *name, *cmd;
 
 			entry = gmenu_tree_iter_get_entry(iter);
-			info = gmenu_tree_entry_get_app_info(entry);
+			WMAddToPLArray(plist, entry_to_plist(entry));
 			gmenu_tree_item_unref(entry);
-
-			name = g_app_info_get_display_name(G_APP_INFO(info));
-			cmd = g_app_info_get_commandline(G_APP_INFO(info));
-			WMAddToPLArray(plist,
-				       WMCreatePLArray(
-					       WMCreatePLString(name),
-					       WMCreatePLString("EXEC"),
-					       WMCreatePLString(cmd),
-					       NULL));
 		} else if (type == GMENU_TREE_ITEM_DIRECTORY) {
 			GMenuTreeDirectory *subdir;
 

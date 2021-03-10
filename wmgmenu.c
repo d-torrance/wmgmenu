@@ -37,7 +37,7 @@ WMPropList *entry_to_plist(GMenuTreeEntry *entry)
 	info = gmenu_tree_entry_get_app_info(entry);
 	name = g_app_info_get_display_name(G_APP_INFO(info));
 	cmd = wstrdup("gtk-launch ");
-	wstrappend(cmd, g_app_info_get_id(G_APP_INFO(info)));
+	cmd = wstrappend(cmd, g_app_info_get_id(G_APP_INFO(info)));
 
 	return WMCreatePLArray(
 		WMCreatePLString(name),

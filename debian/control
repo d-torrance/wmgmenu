@@ -1,0 +1,18 @@
+Source: wmgmenu
+Section: x11
+Priority: optional
+Maintainer: Doug Torrance <dtorrance@piedmont.edu>
+Build-Depends: debhelper (>= 11), libgnome-menu-3-dev, libwings-dev
+Standards-Version: 4.5.1
+Homepage: https://github.com/d-torrance/wmgmenu
+Vcs-Browser:  https://github.com/d-torrance/wmgmenu
+Vcs-Git: https://github.com/d-torrance/wmgmenu
+Rules-Requires-Root: no
+
+Package: wmgmenu
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Window Maker menu using gnome-menus
+ wmgmenu is a small application that uses gnome-menus to produce a
+ proplist menu for Window Maker that follows the freedesktop.org
+ Desktop Menu Specification.

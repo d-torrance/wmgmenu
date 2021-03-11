@@ -15,3 +15,13 @@ jobs:
         run: sudo apt install gnome-menus && ./wmgmenu
       - name: Distribution check
         run: make distcheck
+      - name: Clean up
+        run: make distclean
+      - name: Install dependencies (cinnamon-menus)
+        run: sudo apt install libcinnamon-menu-3-dev
+      - name: Configure (cinnamon-menus)
+        run: ./configure --with-cinnamon-menus
+      - name: Build (cinnamon-menus)
+        run: make
+      - name: Smoke test (cinnamon-menus)
+        run: ./wmgmenu && ldd wmgmenu | grep cinnamon

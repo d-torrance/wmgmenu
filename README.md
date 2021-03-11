@@ -24,3 +24,27 @@ Definition", drag "Generated PL Menu" to the menu that pops up, enter
 "wmgmenu" under "Command", and then click "Save".
 
 Note that `gtk-launch` is used to launch each application from the menu.
+
+Building
+--------
+If building from a tarball from the [releases page](
+https://github.com/d-torrance/wmgmenu/releases), then unpack it, change
+to the corresponding directory, and run:
+
+```
+./configure
+make
+sudo make install
+```
+
+Of building from a git repository, first run
+
+```
+./autogen.sh
+```
+
+and then proceed as above.
+
+Bug reports
+-----------
+Found a bug?  Open an issue at https://github.com/d-torrance/wmgmenu.

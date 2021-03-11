@@ -2,6 +2,7 @@ AC_INIT([wmgmenu], [0.1])
 AC_CONFIG_SRCDIR([wmgmenu.c])
 AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CC
+PKG_CHECK_MODULES([GIO], [gio-unix-2.0])
 PKG_CHECK_MODULES([GMENU], [libgnome-menu-3.0])
 PKG_CHECK_MODULES([WUTIL], [WUtil])
 AC_CONFIG_FILES([Makefile])

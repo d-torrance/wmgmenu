@@ -25,6 +25,15 @@ Definition", drag "Generated PL Menu" to the menu that pops up, enter
 
 Note that `gtk-launch` is used to launch each application from the menu.
 
+Installing
+----------
+wmgmenu is available in Ubuntu using a PPA:
+
+```
+sudo add-apt-repository ppa:profzoom/dockapps
+sudo apt install wmgmenu
+```
+
 Building
 --------
 If building from a tarball from the [releases page](

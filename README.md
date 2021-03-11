@@ -37,7 +37,7 @@ make
 sudo make install
 ```
 
-Of building from a git repository, first run
+If building from a git repository, first run
 
 ```
 ./autogen.sh

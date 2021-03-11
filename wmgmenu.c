@@ -19,14 +19,15 @@
 
 #define GMENU_I_KNOW_THIS_IS_UNSTABLE
 
-#include <WINGs/WUtil.h>
-#include <gio/gdesktopappinfo.h>
-#include <gio/gio.h>
-#include <glib-object.h>
-#include <glib.h>
-#include <gmenu-tree.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <WINGs/WUtil.h>          /* for WMAddToPLArray, WMCreatePLString */
+#include <X11/Xlib.h>             /* for True */
+#include <gio/gdesktopappinfo.h>  /* for GDesktopAppInfo */
+#include <gio/gio.h>              /* for g_app_info_get_display_name, ... */
+#include <glib-object.h>          /* for g_object_unref */
+#include <glib.h>                 /* for GError */
+#include <gmenu-tree.h>           /* for gmenu_tree_item_unref, ... */
+#include <stdio.h>                /* for NULL, printf */
+#include <stdlib.h>               /* for exit, EXIT_FAILURE */
 
 WMPropList *entry_to_plist(GMenuTreeEntry *entry)
 {

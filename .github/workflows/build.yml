@@ -1,4 +1,4 @@
-name: Build and test wmgmenu
+name: build
 on: push
 jobs:
   build:

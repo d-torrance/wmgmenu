@@ -5,7 +5,7 @@ wmgmenu
 
 **wmgmenu** is a small application that uses
 [gnome-menus](https://gitlab.gnome.org/GNOME/gnome-menus) to produce a
-proplist menu for Window Maker that follows the
+proplist menu for [Window Maker](https://www.windowmaker.org/) that follows the
 [freedesktop.org Desktop Menu Specification](
 https://specifications.freedesktop.org/menu-spec/latest/).
 

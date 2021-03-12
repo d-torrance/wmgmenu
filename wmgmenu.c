@@ -159,10 +159,20 @@ int main(int argc, char **argv)
 		char *prefix;
 
 		prefix = getenv("XDG_MENU_PREFIX");
-		if (prefix)
-			filename = wstrdup(prefix);
+		/* provide default prefix if XDG_MENU_PREFIX isn't defined.
+		   cinnamon-menus and the debian package of gnome-menus already
+		   do this, but mate-menus and non-debian gnome-menus do not.
+		   for mate, we still prepend "mate-" even if XDG_MENU_PREFIX
+		   is defined, because that's what mate-menus expects for some
+		   reason */
+#ifdef USE_MATE_MENUS
+		filename = wstrdup("mate-");
+#else
+		if (!prefix)
+			filename = wstrdup("gnome-");
 		else
 			filename = wstrdup("");
+#endif
 		filename = wstrappend(filename, "applications.menu");
 	}
 	tree = gmenu_tree_new_maybe_for_path(filename, GMENU_TREE_FLAGS_NONE);

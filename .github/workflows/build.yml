@@ -25,3 +25,13 @@ jobs:
         run: make
       - name: Smoke test (cinnamon-menus)
         run: ./wmgmenu && ldd wmgmenu | grep cinnamon
+      - name: Clean up
+        run: make distclean
+      - name: Install dependencies (mate-menus)
+        run: sudo apt install libmate-menu-dev
+      - name: Configure (mate-menus)
+        run: ./configure --with-mate-menus
+      - name: Build (mate-menus)
+        run: make
+      - name: Smoke test (mate-menus)
+        run: ./wmgmenu && ldd wmgmenu | grep mate

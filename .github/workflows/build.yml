@@ -51,10 +51,10 @@ jobs:
       - name: Smoke tests (mate-menus)
         run: |
           ldd wmgmenu | grep mate
-          XDG_MENU_PREFIX=mate- ./wmgmenu
+          ./wmgmenu
           ./wmgmenu -f mate-applications.menu
           ./wmgmenu --filename mate-applications.menu
           ./wmgmenu -f /etc/xdg/menus/mate-applications.menu
           ./wmgmenu --filename /etc/xdg/menus/mate-applications.menu
-          XDG_MENU_PREFIX=mate- ./wmgmenu -p
-          XDG_MENU_PREFIX=mate- ./wmgmenu --path
+          ./wmgmenu -p
+          ./wmgmenu --path

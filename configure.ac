@@ -8,9 +8,21 @@ AC_ARG_WITH([cinnamon-menus],
 	  [compile using cinnamon-menus instead of gnome-menus])],
 	[],
 	[with_cinnamon_menus=no])
+AC_ARG_WITH([mate-menus],
+	[AS_HELP_STRING([--with-mate-menus],
+	  [compile using mate-menus instead of gnome-menus])],
+	[],
+	[with_mate_menus=no])
 AS_IF([test "x$with_cinnamon_menus" != xno],
-	[PKG_CHECK_MODULES([GMENU], [libcinnamon-menu-3.0])],
-	[PKG_CHECK_MODULES([GMENU], [libgnome-menu-3.0])])
+	[AS_IF([test "x$with_mate_menus" != xno],
+		[AC_MSG_ERROR(
+		  [you cannot select both cinnamon-menus and mate-menus])],
+		[PKG_CHECK_MODULES([GMENU], [libcinnamon-menu-3.0])])],
+	[AS_IF([test "x$with_mate_menus" != xno],
+		[PKG_CHECK_MODULES([GMENU], [libmate-menu])
+		 AC_DEFINE([USE_MATE_MENUS], [1],
+			   [Define if using mate-menus])],
+		[PKG_CHECK_MODULES([GMENU], [libgnome-menu-3.0])])])
 PKG_CHECK_MODULES([WUTIL], [WUtil])
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

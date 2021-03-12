@@ -128,13 +128,15 @@ int main(int argc, char **argv)
 	GMenuTreeDirectory *root;
 
 	static char *filename = NULL;
-	static Bool version = False;
+	static Bool version = False, path = False;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
 		 "Print version number", NULL},
 		{"filename", 'f', 0, G_OPTION_ARG_FILENAME, &filename,
-		 "Specify menu file", NULL}
+		 "Specify menu file", NULL},
+		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
+		 "Print path to menu file", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -170,6 +172,11 @@ int main(int argc, char **argv)
 	if (!gmenu_tree_load_sync(tree, &error)) {
 		werror("%s", error->message);
 		exit(EXIT_FAILURE);
+	}
+
+	if (path) {
+		printf("%s\n", gmenu_tree_get_canonical_menu_path(tree));
+		exit(EXIT_SUCCESS);
 	}
 
 	root = gmenu_tree_get_root_directory(tree);

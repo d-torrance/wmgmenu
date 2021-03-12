@@ -55,11 +55,18 @@ If building from a git repository, first run
 and then proceed as above.
 
 Alternatively, wmgmenu can be built using [cinnamon-menus](
-https://github.com/linuxmint/cinnamon-menus) instead of gnome-menus.  To do
+https://github.com/linuxmint/cinnamon-menus) or [mate-menus](
+https://github.com/mate-desktop/mate-menus) instead of gnome-menus.  To do
 this, start with
 
 ```
 ./configure --with-cinnamon-menus
+```
+
+or
+
+```
+./configure --with-mate-menus
 ```
 
 and then proceed as above.

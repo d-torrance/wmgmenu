@@ -28,10 +28,10 @@ jobs:
       - name: Clean up
         run: make distclean
       - name: Install dependencies (mate-menus)
-        run: sudo apt install libmate-menu-dev
+        run: sudo apt install libmate-menu-dev mate-menus
       - name: Configure (mate-menus)
         run: ./configure --with-mate-menus
       - name: Build (mate-menus)
         run: make
       - name: Smoke test (mate-menus)
-        run: ./wmgmenu && ldd wmgmenu | grep mate
+        run: XDG_MENU_PREFIX=mate- ./wmgmenu && ldd wmgmenu | grep mate

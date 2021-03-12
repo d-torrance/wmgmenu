@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt install libgnome-menu-3-dev libwings-dev
+        run: sudo apt install libgnome-menu-3-dev libwings-dev \
+             gnome-menus cinnamon-common mate-menus
       - name: Configure
         run: ./autogen.sh && ./configure
       - name: Build
@@ -14,7 +15,6 @@ jobs:
       - name: Smoke tests
         run: |
           ldd wmgmenu | grep gnome
-          sudo apt install gnome-menus
           ./wmgmenu
           ./wmgmenu -v
           ./wmgmenu --version
@@ -35,7 +35,6 @@ jobs:
       - name: Smoke tests (cinnamon-menus)
         run: |
           ldd wmgmenu | grep cinnamon
-          sudo apt install cinnamon-common
           ./wmgmenu
           ./wmgmenu -v
           ./wmgmenu --version
@@ -54,7 +53,6 @@ jobs:
       - name: Smoke tests (mate-menus)
         run: |
           ldd wmgmenu | grep mate
-          sudo apt install mate-menus
           XDG_MENU_PREFIX=mate- ./wmgmenu
           ./wmgmenu -v
           ./wmgmenu --version

@@ -112,6 +112,28 @@ int main(int argc, char **argv)
 	GMenuTreeDirectory *root;
 	char *prefix, *filename;
 
+	static Bool version = False;
+	GOptionContext *context;
+	static GOptionEntry entries[] = {
+		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
+		 "Print version number", NULL}};
+
+	context = g_option_context_new("");
+	g_option_context_set_description(
+		context, "Window Maker menu using gnome-menus");
+	g_option_context_add_main_entries(context, entries, NULL);
+
+	error = NULL;
+	if (!g_option_context_parse(context, &argc, &argv, &error)) {
+		werror("option parsing failed: %s\n", error->message);
+		exit(EXIT_FAILURE);
+	}
+
+	if (version) {
+		printf(PACKAGE_STRING"\n");
+		exit(EXIT_SUCCESS);
+	}
+
 	prefix = getenv("XDG_MENU_PREFIX");
 	if (prefix)
 		filename = wstrdup(prefix);

@@ -18,7 +18,6 @@
  */
 
 #include <WINGs/WUtil.h>          /* for WMAddToPLArray, WMCreatePLString */
-#include <X11/Xlib.h>             /* for True */
 #include <gio/gdesktopappinfo.h>  /* for GDesktopAppInfo */
 #include <gio/gio.h>              /* for g_app_info_get_display_name, ... */
 #include <glib-object.h>          /* for g_object_unref */
@@ -128,7 +127,7 @@ int main(int argc, char **argv)
 	GMenuTreeDirectory *root;
 
 	static char *filename = NULL;
-	static Bool version = False, path = False;
+	static gboolean version = FALSE, path = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -181,8 +180,8 @@ int main(int argc, char **argv)
 
 	root = gmenu_tree_get_root_directory(tree);
 	if (root) {
-		printf("%s\n", WMGetPropListDescription(treedir_to_plist(root),
-							True));
+		printf("%s\n",
+		       WMGetPropListDescription(treedir_to_plist(root), TRUE));
 		gmenu_tree_item_unref(root);
 	}
 

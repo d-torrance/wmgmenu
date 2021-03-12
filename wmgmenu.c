@@ -110,13 +110,16 @@ int main(int argc, char **argv)
 	GError *error;
 	GMenuTree *tree;
 	GMenuTreeDirectory *root;
-	char *prefix, *filename;
 
+	static char *filename = NULL;
 	static Bool version = False;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
-		 "Print version number", NULL}};
+		 "Print version number", NULL},
+		{"filename", 'f', 0, G_OPTION_ARG_FILENAME, &filename,
+		 "Specify menu file", NULL}
+	};
 
 	context = g_option_context_new("");
 	g_option_context_set_description(
@@ -134,12 +137,16 @@ int main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 
-	prefix = getenv("XDG_MENU_PREFIX");
-	if (prefix)
-		filename = wstrdup(prefix);
-	else
-		filename = wstrdup("");
-	filename = wstrappend(filename, "applications.menu");
+	if (!filename) {
+		char *prefix;
+
+		prefix = getenv("XDG_MENU_PREFIX");
+		if (prefix)
+			filename = wstrdup(prefix);
+		else
+			filename = wstrdup("");
+		filename = wstrappend(filename, "applications.menu");
+	}
 	tree = gmenu_tree_new(filename, GMENU_TREE_FLAGS_NONE);
 	wfree(filename);
 

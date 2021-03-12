@@ -25,6 +25,26 @@ Definition", drag "Generated PL Menu" to the menu that pops up, enter
 
 Note that `gtk-launch` is used to launch each application from the menu.
 
+By default, wmgmenu will load `${XDG_MENU_PREFIX}applications.menu`.
+If you would like to load another file, then you may specify it
+with the `-f` or `--filename` commandline arguments, e.g.,
+
+```
+wmgmenu -f /etc/xdg/menus/mate-settings.menu
+```
+
+If the file exists in the `menus` subdirectory of the user or system
+configuration directories (by default, `~/.config/menus` or
+`/etc/xdg/menus` and possibly given by the `XDG_CONFIG_HOME` and
+`XDG_CONFIG_DIRS` environment variables -- see the
+[XDG Base Directory Specification](
+https://specifications.freedesktop.org/basedir-spec/latest/) for more
+information), then a full path need not be given.  For example:
+
+```
+wmgmenu -f mate-settings.menu
+```
+
 Installing
 ----------
 wmgmenu is available in Ubuntu using a PPA:

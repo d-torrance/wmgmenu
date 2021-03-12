@@ -110,34 +110,21 @@ int main(int argc, char **argv)
 	GError *error;
 	GMenuTree *tree;
 	GMenuTreeDirectory *root;
+	char *prefix, *filename;
 
-	tree = gmenu_tree_new("applications.menu", GMENU_TREE_FLAGS_NONE);
+	prefix = getenv("XDG_MENU_PREFIX");
+	if (prefix)
+		filename = wstrdup(prefix);
+	else
+		filename = wstrdup("");
+	filename = wstrappend(filename, "applications.menu");
+	tree = gmenu_tree_new(filename, GMENU_TREE_FLAGS_NONE);
+	wfree(filename);
 
 	error = NULL;
 	if (!gmenu_tree_load_sync(tree, &error)) {
-		/* try again, but with XDG_MENU_PREFIX */
-		char *prefix, *filename, *first_error_msg;
-
-		first_error_msg = wstrdup(error->message);
-		error = NULL;
-
-		prefix = getenv("XDG_MENU_PREFIX");
-		if (!prefix) {
-			werror("%s", first_error_msg);
-			werror("XDG_MENU_PREFIX is undefined");
-			exit(EXIT_FAILURE);
-		}
-
-		filename = wstrdup(prefix);
-		filename = wstrappend(filename, "applications.menu");
-		tree = gmenu_tree_new(filename, GMENU_TREE_FLAGS_NONE);
-		wfree(filename);
-
-		if (!gmenu_tree_load_sync(tree, &error)) {
-			werror("%s", first_error_msg);
-			werror("%s", error->message);
-			exit(EXIT_FAILURE);
-		}
+		werror("%s", error->message);
+		exit(EXIT_FAILURE);
 	}
 
 	root = gmenu_tree_get_root_directory(tree);

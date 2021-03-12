@@ -56,5 +56,5 @@ jobs:
           ./wmgmenu --filename mate-applications.menu
           ./wmgmenu -f /etc/xdg/menus/mate-applications.menu
           ./wmgmenu --filename /etc/xdg/menus/mate-applications.menu
-          ./wmgmenu -p
-          ./wmgmenu --path
+          XDG_MENU_PREFIX=mate- ./wmgmenu -p
+          XDG_MENU_PREFIX=mate- ./wmgmenu --path

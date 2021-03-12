@@ -30,6 +30,7 @@
 #endif
 #include <stdio.h>                /* for NULL, printf */
 #include <stdlib.h>               /* for exit, EXIT_FAILURE */
+#include <string.h>               /* for strcmp */
 
 WMPropList *entry_to_plist(GMenuTreeEntry *entry)
 {

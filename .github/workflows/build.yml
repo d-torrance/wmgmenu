@@ -9,6 +9,7 @@ jobs:
         run: sudo apt install libwings-dev libgnome-menu-3-dev
              libcinnamon-menu-3-dev libmate-menu-dev
              gnome-menus cinnamon-common mate-menus
+             enlightenment-common
       - name: Build (gnome-menus)
         run: |
           ./autogen.sh
@@ -26,6 +27,7 @@ jobs:
           ./wmgmenu --filename /etc/xdg/menus/gnome-applications.menu
           ./wmgmenu -p
           ./wmgmenu --path
+          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
       - name: Distribution check
         run: make distcheck
       - name: Build (cinnamon-menus)
@@ -43,6 +45,7 @@ jobs:
           ./wmgmenu --filename /etc/xdg/menus/cinnamon-applications.menu
           ./wmgmenu -p
           ./wmgmenu --path
+          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
       - name: Build (mate-menus)
         run: |
           make distclean
@@ -58,3 +61,4 @@ jobs:
           ./wmgmenu --filename /etc/xdg/menus/mate-applications.menu
           ./wmgmenu -p
           ./wmgmenu --path
+          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu

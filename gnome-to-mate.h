@@ -6,7 +6,9 @@
 #define GMenuTreeAlias     MateMenuTreeAlias
 #define GMenuTreeIter      MateMenuTreeIter
 #define GMenuTreeItemType  MateMenuTreeItemType
+#define GMenuTreeFlags     MateMenuTreeFlags
 #define gmenu_tree_new                matemenu_tree_new
+#define gmenu_tree_new_for_path       matemenu_tree_new_for_path
 #define gmenu_tree_load_sync          matemenu_tree_load_sync
 #define gmenu_tree_get_root_directory matemenu_tree_get_root_directory
 #define gmenu_tree_entry_get_app_info matemenu_tree_entry_get_app_info

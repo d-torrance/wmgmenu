@@ -105,6 +105,22 @@ WMPropList *treedir_to_plist(GMenuTreeDirectory *directory)
 	return plist;
 }
 
+GMenuTree *gmenu_tree_new_maybe_for_path(const char *filename,
+					 GMenuTreeFlags flags)
+{
+	char *basename;
+	GMenuTree *tree;
+
+	basename = g_path_get_basename(filename);
+	if (strcmp(filename, basename) == 0)
+		tree = gmenu_tree_new(filename, flags);
+	else
+		tree = gmenu_tree_new_for_path(filename, flags);
+
+	wfree(basename);
+	return tree;
+}
+
 int main(int argc, char **argv)
 {
 	GError *error;
@@ -147,7 +163,7 @@ int main(int argc, char **argv)
 			filename = wstrdup("");
 		filename = wstrappend(filename, "applications.menu");
 	}
-	tree = gmenu_tree_new(filename, GMENU_TREE_FLAGS_NONE);
+	tree = gmenu_tree_new_maybe_for_path(filename, GMENU_TREE_FLAGS_NONE);
 	wfree(filename);
 
 	error = NULL;

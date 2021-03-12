@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt install libgnome-menu-3-dev libwings-dev \
+        run: sudo apt install libgnome-menu-3-dev libwings-dev
              gnome-menus cinnamon-common mate-menus
       - name: Configure
         run: ./autogen.sh && ./configure

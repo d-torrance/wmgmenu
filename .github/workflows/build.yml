@@ -11,8 +11,17 @@ jobs:
         run: ./autogen.sh && ./configure
       - name: Build
         run: make
-      - name: Smoke test
-        run: sudo apt install gnome-menus && ./wmgmenu
+      - name: Smoke tests
+        run: |
+          ldd wmgmenu | grep gnome
+          sudo apt install gnome-menus
+          ./wmgmenu
+          ./wmgmenu -v
+          ./wmgmenu --version
+          ./wmgmenu -f gnome-applications.menu
+          ./wmgmenu --filename gnome-applications.menu
+          ./wmgmenu -f /etc/xdg/menus/gnome-applications.menu
+          ./wmgmenu --filename /etc/xdg/menus/gnome-applications.menu
       - name: Distribution check
         run: make distcheck
       - name: Clean up
@@ -23,8 +32,17 @@ jobs:
         run: ./configure --with-cinnamon-menus
       - name: Build (cinnamon-menus)
         run: make
-      - name: Smoke test (cinnamon-menus)
-        run: ./wmgmenu && ldd wmgmenu | grep cinnamon
+      - name: Smoke tests (cinnamon-menus)
+        run: |
+          ldd wmgmenu | grep cinnamon
+          sudo apt install cinnamon-common
+          ./wmgmenu
+          ./wmgmenu -v
+          ./wmgmenu --version
+          ./wmgmenu -f cinnamon-applications.menu
+          ./wmgmenu --filename cinnamon-applications.menu
+          ./wmgmenu -f /etc/xdg/menus/cinnamon-applications.menu
+          ./wmgmenu --filename /etc/xdg/menus/cinnamon-applications.menu
       - name: Clean up
         run: make distclean
       - name: Install dependencies (mate-menus)
@@ -33,5 +51,14 @@ jobs:
         run: ./configure --with-mate-menus
       - name: Build (mate-menus)
         run: make
-      - name: Smoke test (mate-menus)
-        run: XDG_MENU_PREFIX=mate- ./wmgmenu && ldd wmgmenu | grep mate
+      - name: Smoke tests (mate-menus)
+        run: |
+          ldd wmgmenu | grep mate
+          sudo apt install mate-menus
+          XDG_MENU_PREFIX=mate- ./wmgmenu
+          ./wmgmenu -v
+          ./wmgmenu --version
+          ./wmgmenu -f mate-applications.menu
+          ./wmgmenu --filename mate-applications.menu
+          ./wmgmenu -f /etc/xdg/menus/mate-applications.menu
+          ./wmgmenu --filename /etc/xdg/menus/mate-applications.menu

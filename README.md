@@ -4,8 +4,8 @@ wmgmenu
 =======
 
 **wmgmenu** is a small application that uses
-[gnome-menus](https://gitlab.gnome.org/GNOME/gnome-menus) to produce a
-proplist menu for [Window Maker](https://www.windowmaker.org/) that follows the
+[gnome-menus](https://gitlab.gnome.org/GNOME/gnome-menus) (or one of its various forks) to produce a proplist menu for [Window Maker](
+https://www.windowmaker.org/) that follows the
 [freedesktop.org Desktop Menu Specification](
 https://specifications.freedesktop.org/menu-spec/latest/).
 
@@ -55,6 +55,13 @@ sudo apt install wmgmenu
 
 Building
 --------
+
+*Prerequisites:*
+
+* [GLib](https://wiki.gnome.org/Projects/GLib)
+* [gnome-menus](https://gitlab.gnome.org/GNOME/gnome-menus)
+* [WUtil](https://www.windowmaker.org/)
+
 If building from a tarball from the [releases page](
 https://github.com/d-torrance/wmgmenu/releases), then unpack it, change
 to the corresponding directory, and run:

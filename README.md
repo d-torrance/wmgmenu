@@ -34,10 +34,9 @@ wmgmenu -f /etc/xdg/menus/mate-settings.menu
 ```
 
 If the file exists in the `menus` subdirectory of the user or system
-configuration directories (by default, `~/.config/menus` or
-`/etc/xdg/menus` and possibly given by the `XDG_CONFIG_HOME` and
-`XDG_CONFIG_DIRS` environment variables -- see the
-[XDG Base Directory Specification](
+configuration directories (by default, `~/.config` or `/etc/xdg` and
+possibly given by the `XDG_CONFIG_HOME` and `XDG_CONFIG_DIRS`
+environment variables -- see the [XDG Base Directory Specification](
 https://specifications.freedesktop.org/basedir-spec/latest/) for more
 information), then a full path need not be given.  For example:
 

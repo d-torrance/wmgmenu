@@ -141,7 +141,7 @@ int main(int argc, char **argv)
 		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
 		 "Print path to menu file", NULL},
 		{"library", 'l', 0, G_OPTION_ARG_NONE, &library,
-		 "Print menu library used to compile wmgmenu", NULL},
+		 "Print menu library that wmgmenu is using", NULL},
 		{"excluded", 'x', 0, G_OPTION_ARG_NONE, &excluded,
 		 "Include excluded entries", NULL},
 		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,

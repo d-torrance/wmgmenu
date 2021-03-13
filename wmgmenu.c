@@ -129,7 +129,8 @@ int main(int argc, char **argv)
 	GMenuTreeFlags flags;
 
 	static char *filename = NULL;
-	static gboolean version = FALSE, path = FALSE, excluded = FALSE;
+	static gboolean version = FALSE, path = FALSE, excluded = FALSE,
+		nodisplay = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -139,7 +140,9 @@ int main(int argc, char **argv)
 		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
 		 "Print path to menu file", NULL},
 		{"excluded", 'e', 0, G_OPTION_ARG_NONE, &excluded,
-		 "Include excluded entries", NULL}
+		 "Include excluded entries", NULL},
+		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
+		 "Include entries marked 'NoDisplay'", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -182,6 +185,8 @@ int main(int argc, char **argv)
 	flags = GMENU_TREE_FLAGS_NONE;
 	if (excluded)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_EXCLUDED;
+	if (nodisplay)
+		flags |= GMENU_TREE_FLAGS_INCLUDE_NODISPLAY;
 
 	tree = gmenu_tree_new_maybe_for_path(filename, flags);
 	wfree(filename);

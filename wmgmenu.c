@@ -130,7 +130,7 @@ int main(int argc, char **argv)
 
 	static char *filename = NULL;
 	static gboolean version = FALSE, path = FALSE, excluded = FALSE,
-		nodisplay = FALSE, unallocated = FALSE;
+		nodisplay = FALSE, unallocated = FALSE, empty = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -139,12 +139,14 @@ int main(int argc, char **argv)
 		 "Specify menu file", NULL},
 		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
 		 "Print path to menu file", NULL},
-		{"excluded", 'e', 0, G_OPTION_ARG_NONE, &excluded,
+		{"excluded", 'x', 0, G_OPTION_ARG_NONE, &excluded,
 		 "Include excluded entries", NULL},
 		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
 		 "Include entries marked 'NoDisplay'", NULL},
 		{"unallocated", 'u', 0, G_OPTION_ARG_NONE, &unallocated,
-		 "Include unallocated entries", NULL}
+		 "Include unallocated entries", NULL},
+		{"empty", 'e', 0, G_OPTION_ARG_NONE, &empty,
+		 "Show empty directories", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -191,6 +193,8 @@ int main(int argc, char **argv)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_NODISPLAY;
 	if (unallocated)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_UNALLOCATED;
+	if (empty)
+		flags |= GMENU_TREE_FLAGS_SHOW_EMPTY;
 
 	tree = gmenu_tree_new_maybe_for_path(filename, flags);
 	wfree(filename);

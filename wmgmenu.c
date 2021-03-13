@@ -126,9 +126,10 @@ int main(int argc, char **argv)
 	GError *error;
 	GMenuTree *tree;
 	GMenuTreeDirectory *root;
+	GMenuTreeFlags flags;
 
 	static char *filename = NULL;
-	static gboolean version = FALSE, path = FALSE;
+	static gboolean version = FALSE, path = FALSE, excluded = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -136,7 +137,9 @@ int main(int argc, char **argv)
 		{"filename", 'f', 0, G_OPTION_ARG_FILENAME, &filename,
 		 "Specify menu file", NULL},
 		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
-		 "Print path to menu file", NULL}
+		 "Print path to menu file", NULL},
+		{"excluded", 'e', 0, G_OPTION_ARG_NONE, &excluded,
+		 "Include excluded entries", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -175,7 +178,12 @@ int main(int argc, char **argv)
 #endif
 		filename = wstrappend(filename, "applications.menu");
 	}
-	tree = gmenu_tree_new_maybe_for_path(filename, GMENU_TREE_FLAGS_NONE);
+
+	flags = GMENU_TREE_FLAGS_NONE;
+	if (excluded)
+		flags |= GMENU_TREE_FLAGS_INCLUDE_EXCLUDED;
+
+	tree = gmenu_tree_new_maybe_for_path(filename, flags);
 	wfree(filename);
 
 	error = NULL;

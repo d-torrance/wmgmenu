@@ -1,6 +1,6 @@
 AC_INIT([wmgmenu], [0.1])
 AC_CONFIG_SRCDIR([wmgmenu.c])
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign serial-tests])
 AC_PROG_CC
 PKG_CHECK_MODULES([GIO], [gio-unix-2.0])
 AC_ARG_WITH([cinnamon-menus],

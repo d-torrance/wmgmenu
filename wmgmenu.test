@@ -1,0 +1,53 @@
+#!/usr/bin/env bats
+
+@test "no args" {
+    ./wmgmenu
+}
+
+@test "-v" {
+    ./wmgmenu -v
+}
+
+@test "--version" {
+    ./wmgmenu --version
+}
+
+@test "-h" {
+    ./wmgmenu -h
+}
+
+@test "-?" {
+    ./wmgmenu -?
+}
+
+@test "--help" {
+    ./wmgmenu -?
+}
+
+@test "-f (basename only)" {
+    ./wmgmenu -f gnome-applications.menu
+}
+
+@test "--filename (basename only)" {
+    ./wmgmenu --filename gnome-applications.menu
+}
+
+@test "-f (full path)" {
+    ./wmgmenu -f /etc/xdg/menus/gnome-applications.menu
+}
+
+@test "--filename (full path)" {
+    ./wmgmenu --filename /etc/xdg/menus/gnome-applications.menu
+}
+
+@test "-p" {
+    ./wmgmenu -p
+}
+
+@test "--path" {
+    ./wmgmenu --path
+}
+
+@test "XDG_MENU_PREFIX" {
+    XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
+}

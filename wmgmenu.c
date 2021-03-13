@@ -130,7 +130,7 @@ int main(int argc, char **argv)
 
 	static char *filename = NULL;
 	static gboolean version = FALSE, path = FALSE, excluded = FALSE,
-		nodisplay = FALSE;
+		nodisplay = FALSE, unallocated = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -142,7 +142,9 @@ int main(int argc, char **argv)
 		{"excluded", 'e', 0, G_OPTION_ARG_NONE, &excluded,
 		 "Include excluded entries", NULL},
 		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
-		 "Include entries marked 'NoDisplay'", NULL}
+		 "Include entries marked 'NoDisplay'", NULL},
+		{"unallocated", 'u', 0, G_OPTION_ARG_NONE, &unallocated,
+		 "Include unallocated entries", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -187,6 +189,8 @@ int main(int argc, char **argv)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_EXCLUDED;
 	if (nodisplay)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_NODISPLAY;
+	if (unallocated)
+		flags |= GMENU_TREE_FLAGS_INCLUDE_UNALLOCATED;
 
 	tree = gmenu_tree_new_maybe_for_path(filename, flags);
 	wfree(filename);

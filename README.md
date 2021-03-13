@@ -97,6 +97,24 @@ or
 
 and then proceed as above.
 
+Test suite
+----------
+
+The test suite uses [Bats](https://github.com/bats-core/bats-core).
+It expects to find some menu files on the system:
+
+* a default menu file (`${XDG_MENU_PREFIX}applications.menu`),
+* `/etc/xdg/menus/gnome-applications.menu`, for testing the `-f`
+  commandline option, and
+* `e-applications.menu` (the [Enlightment](https://www.enlightenment.org/)
+  menu), for testing `XDG_MENU_PREFIX` support with a non-default value.
+
+To run the test suite:
+
+```
+make check
+```
+
 Bug reports
 -----------
 Found a bug?  Open an issue at https://github.com/d-torrance/wmgmenu.

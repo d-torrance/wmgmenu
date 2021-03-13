@@ -13,16 +13,20 @@ AC_ARG_WITH([mate-menus],
 	  [compile using mate-menus instead of gnome-menus])],
 	[],
 	[with_mate_menus=no])
+num_libs=0
+for menu_lib in $with_cinnamon_menus $with_mate_menus
+do
+	AS_IF([test "x$menu_lib" != xno], [num_libs=$((num_libs + 1))])
+done
+AS_IF([test $num_libs -gt 1],
+      [AC_MSG_ERROR([you must select at most one alternative to gnome-menus])])
+AS_IF([test $num_libs -eq 0],
+      [PKG_CHECK_MODULES([GMENU], [libgnome-menu-3.0])])
 AS_IF([test "x$with_cinnamon_menus" != xno],
-	[AS_IF([test "x$with_mate_menus" != xno],
-		[AC_MSG_ERROR(
-		  [you cannot select both cinnamon-menus and mate-menus])],
-		[PKG_CHECK_MODULES([GMENU], [libcinnamon-menu-3.0])])],
-	[AS_IF([test "x$with_mate_menus" != xno],
-		[PKG_CHECK_MODULES([GMENU], [libmate-menu])
-		 AC_DEFINE([USE_MATE_MENUS], [1],
-			   [Define if using mate-menus])],
-		[PKG_CHECK_MODULES([GMENU], [libgnome-menu-3.0])])])
+      [PKG_CHECK_MODULES([GMENU], [libcinnamon-menu-3.0])])
+AS_IF([test "x$with_mate_menus" != xno],
+      [PKG_CHECK_MODULES([GMENU], [libmate-menu])
+      AC_DEFINE([USE_MATE_MENUS], [1], [Define if using mate-menus])])
 PKG_CHECK_MODULES([WUTIL], [WUtil])
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

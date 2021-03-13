@@ -1,5 +1,6 @@
 *~
 .deps
+BUILD
 INSTALL
 README.html
 Makefile
@@ -13,7 +14,10 @@ configure
 depcomp
 install-sh
 missing
+test-suite.log
 wmgmenu
+wmgmenu.log
 wmgmenu.o
+wmgmenu.trs
 wmgmenu-*.tar.gz
 wmgmenu-*.tar.gz.asc

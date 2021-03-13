@@ -129,8 +129,9 @@ int main(int argc, char **argv)
 	GMenuTreeFlags flags;
 
 	static char *filename = NULL;
-	static gboolean version = FALSE, path = FALSE, excluded = FALSE,
-		nodisplay = FALSE, unallocated = FALSE, empty = FALSE;
+	static gboolean version = FALSE, path = FALSE, library = FALSE,
+		excluded = FALSE, nodisplay = FALSE, unallocated = FALSE,
+		empty = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -139,6 +140,8 @@ int main(int argc, char **argv)
 		 "Specify menu file", NULL},
 		{"path", 'p', 0, G_OPTION_ARG_NONE, &path,
 		 "Print path to menu file", NULL},
+		{"library", 'l', 0, G_OPTION_ARG_NONE, &library,
+		 "Print menu library used to compile wmgmenu", NULL},
 		{"excluded", 'x', 0, G_OPTION_ARG_NONE, &excluded,
 		 "Include excluded entries", NULL},
 		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
@@ -162,6 +165,11 @@ int main(int argc, char **argv)
 
 	if (version) {
 		printf(PACKAGE_STRING"\n");
+		exit(EXIT_SUCCESS);
+	}
+
+	if (library) {
+		printf(MENU_LIBRARY"\n");
 		exit(EXIT_SUCCESS);
 	}
 

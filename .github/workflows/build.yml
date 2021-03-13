@@ -9,56 +9,31 @@ jobs:
         run: sudo apt install libwings-dev libgnome-menu-3-dev
              libcinnamon-menu-3-dev libmate-menu-dev
              gnome-menus cinnamon-common mate-menus
-             enlightenment-data
+             enlightenment-data bats
       - name: Build (gnome-menus)
         run: |
           ./autogen.sh
           ./configure
           make
-      - name: Smoke tests (gnome-menus)
+      - name: Test (gnome-menus)
         run: |
           ldd wmgmenu | grep gnome
-          ./wmgmenu
-          ./wmgmenu -v
-          ./wmgmenu --version
-          ./wmgmenu -f gnome-applications.menu
-          ./wmgmenu --filename gnome-applications.menu
-          ./wmgmenu -f /etc/xdg/menus/gnome-applications.menu
-          ./wmgmenu --filename /etc/xdg/menus/gnome-applications.menu
-          ./wmgmenu -p
-          ./wmgmenu --path
-          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
-      - name: Distribution check
-        run: make distcheck
+          make distcheck
       - name: Build (cinnamon-menus)
         run: |
           make distclean
           ./configure --with-cinnamon-menus
           make
-      - name: Smoke tests (cinnamon-menus)
+      - name: Test (cinnamon-menus)
         run: |
           ldd wmgmenu | grep cinnamon
-          ./wmgmenu
-          ./wmgmenu -f cinnamon-applications.menu
-          ./wmgmenu --filename cinnamon-applications.menu
-          ./wmgmenu -f /etc/xdg/menus/cinnamon-applications.menu
-          ./wmgmenu --filename /etc/xdg/menus/cinnamon-applications.menu
-          ./wmgmenu -p
-          ./wmgmenu --path
-          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
+          make check
       - name: Build (mate-menus)
         run: |
           make distclean
           ./configure --with-mate-menus
           make
-      - name: Smoke tests (mate-menus)
+      - name: Test (mate-menus)
         run: |
           ldd wmgmenu | grep mate
-          ./wmgmenu
-          ./wmgmenu -f mate-applications.menu
-          ./wmgmenu --filename mate-applications.menu
-          ./wmgmenu -f /etc/xdg/menus/mate-applications.menu
-          ./wmgmenu --filename /etc/xdg/menus/mate-applications.menu
-          ./wmgmenu -p
-          ./wmgmenu --path
-          XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
+          make check

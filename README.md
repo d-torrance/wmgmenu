@@ -65,6 +65,15 @@ the menu and in what order.
   that `X-GNOME-FullName` is not very common, and setting this flag
   will likely have little to no effect.
 
+Finally, several commandline options can be used to print information about
+wmgmenu instead of the proplist menu.
+
+* `-h`, `--help`: Show help options.
+* `-v`, `--version`: Print the version number.
+* `-p`, `--path`: Print the path to the `.menu` file that is loaded.
+* `-l`, `--library`: Print the menu library that wmgmenu is using
+  (`gnome-menus`, `cinnamon-menus`, or `mate-menus`).
+
 Installing
 ----------
 wmgmenu is available in Ubuntu using a PPA:

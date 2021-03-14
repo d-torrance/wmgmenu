@@ -172,7 +172,9 @@ int main(int argc, char **argv)
 
 	context = g_option_context_new("");
 	g_option_context_set_description(
-		context, "Window Maker menu using gnome-menus");
+		context,
+		"Window Maker menu that follows the freedesktop.org Desktop "
+		"Menu Specification");
 	g_option_context_add_main_entries(context, entries, NULL);
 
 	error = NULL;

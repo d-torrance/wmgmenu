@@ -30,7 +30,6 @@
 #endif
 #include <stdio.h>                /* for NULL, printf */
 #include <stdlib.h>               /* for exit, EXIT_FAILURE */
-#include <string.h>               /* for strcmp */
 
 WMPropList *entry_to_plist(GMenuTreeEntry *entry)
 {
@@ -129,7 +128,7 @@ GMenuTree *gmenu_tree_new_maybe_for_path(const char *filename,
 	GMenuTree *tree;
 
 	basename = g_path_get_basename(filename);
-	if (strcmp(filename, basename) == 0)
+	if (g_strcmp0(filename, basename) == 0)
 		tree = gmenu_tree_new(filename, flags);
 	else
 		tree = gmenu_tree_new_for_path(filename, flags);

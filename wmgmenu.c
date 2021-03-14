@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 	static char *filename = NULL;
 	static gboolean version = FALSE, path = FALSE, library = FALSE,
 		excluded = FALSE, nodisplay = FALSE, unallocated = FALSE,
-		empty = FALSE;
+		empty = FALSE, sort = FALSE;
 	GOptionContext *context;
 	static GOptionEntry entries[] = {
 		{"version", 'v', 0, G_OPTION_ARG_NONE, &version,
@@ -165,7 +165,9 @@ int main(int argc, char **argv)
 		{"unallocated", 'u', 0, G_OPTION_ARG_NONE, &unallocated,
 		 "Include unallocated entries", NULL},
 		{"empty", 'e', 0, G_OPTION_ARG_NONE, &empty,
-		 "Show empty directories", NULL}
+		 "Show empty directories", NULL},
+		{"sort", 's', 0, G_OPTION_ARG_NONE, &sort,
+		 "Sort by display name", NULL}
 	};
 
 	context = g_option_context_new("");
@@ -220,6 +222,8 @@ int main(int argc, char **argv)
 		flags |= GMENU_TREE_FLAGS_INCLUDE_UNALLOCATED;
 	if (empty)
 		flags |= GMENU_TREE_FLAGS_SHOW_EMPTY;
+	if (sort)
+		flags |= GMENU_TREE_FLAGS_SORT_DISPLAY_NAME;
 
 	tree = gmenu_tree_new_maybe_for_path(filename, flags);
 	wfree(filename);

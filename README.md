@@ -49,6 +49,22 @@ information), then a full path need not be given.  For example:
 wmgmenu -f mate-settings.menu
 ```
 
+There are also a number of commandline options that set flags used
+by gnome-menus to determine how it decides which entries to include in
+the menu and in what order.
+
+* `-x`, `--include-excluded`: Include excluded entries.
+* `-n`, `--include-nodisplay`: Include entries marked 'NoDisplay'.
+* `-u`, `--include-unallocated`: Include unallocated entries.
+* `-e`, `--show-empty`: Show empty directories.
+* `-s`, `--sort-display-name`: By default, gnome-menus determines
+  how to sort an entry based on the `Name` given in its `.desktop`
+  file.  With this flag set, it uses [`X-GNOME-FullName`](
+  https://wiki.gnome.org/Initiatives/GnomeGoals/CorrectDesktopFiles)
+  instead, falling back to `Name` if this key doesn't exist.  Note
+  that `X-GNOME-FullName` is not very common, and setting this flag
+  will likely have little to no effect.
+
 Installing
 ----------
 wmgmenu is available in Ubuntu using a PPA:

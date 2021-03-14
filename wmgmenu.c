@@ -158,15 +158,15 @@ int main(int argc, char **argv)
 		 "Print path to menu file", NULL},
 		{"library", 'l', 0, G_OPTION_ARG_NONE, &library,
 		 "Print menu library that wmgmenu is using", NULL},
-		{"excluded", 'x', 0, G_OPTION_ARG_NONE, &excluded,
+		{"include-excluded", 'x', 0, G_OPTION_ARG_NONE, &excluded,
 		 "Include excluded entries", NULL},
-		{"nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
+		{"include-nodisplay", 'n', 0, G_OPTION_ARG_NONE, &nodisplay,
 		 "Include entries marked 'NoDisplay'", NULL},
-		{"unallocated", 'u', 0, G_OPTION_ARG_NONE, &unallocated,
+		{"include-unallocated", 'u', 0, G_OPTION_ARG_NONE, &unallocated,
 		 "Include unallocated entries", NULL},
-		{"empty", 'e', 0, G_OPTION_ARG_NONE, &empty,
+		{"show-empty", 'e', 0, G_OPTION_ARG_NONE, &empty,
 		 "Show empty directories", NULL},
-		{"sort", 's', 0, G_OPTION_ARG_NONE, &sort,
+		{"sort-display-name", 's', 0, G_OPTION_ARG_NONE, &sort,
 		 "Sort by display name", NULL}
 	};
 

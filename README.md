@@ -1,4 +1,9 @@
-![workflow badge](https://github.com/d-torrance/wmgmenu/actions/workflows/build.yml/badge.svg)
+[![license badge](https://img.shields.io/github/license/d-torrance/wmgmenu)](
+https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![workflow badge](https://github.com/d-torrance/wmgmenu/actions/workflows/build.yml/badge.svg)](
+https://github.com/d-torrance/wmgmenu/actions)
+[![release badge](https://img.shields.io/github/v/release/d-torrance/wmgmenu)](
+https://github.com/d-torrance/wmgmenu/releases)
 
 wmgmenu
 =======

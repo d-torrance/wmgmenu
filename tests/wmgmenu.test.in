@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+export XDG_CONFIG_HOME=@abs_srcdir@
+
 @test "no args" {
     ./wmgmenu
 }
@@ -33,11 +35,11 @@
 }
 
 @test "-f (full path)" {
-    ./wmgmenu -f /etc/xdg/menus/gnome-applications.menu
+    ./wmgmenu -f @abs_srcdir@/menus/gnome-applications.menu
 }
 
 @test "--filename (full path)" {
-    ./wmgmenu --filename /etc/xdg/menus/gnome-applications.menu
+    ./wmgmenu --filename @abs_srcdir@/menus/gnome-applications.menu
 }
 
 @test "-p" {
@@ -49,5 +51,5 @@
 }
 
 @test "XDG_MENU_PREFIX" {
-    XDG_MENU_PREFIX=e- ./wmgmenu -p | grep e-applications.menu
+    XDG_MENU_PREFIX=foo- ./wmgmenu
 }

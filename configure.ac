@@ -33,5 +33,6 @@ AS_IF([test "x$with_mate_menus" != xno],
 AC_DEFINE_UNQUOTED([MENU_LIBRARY], [$menu_library],
 			  [Menu library used to compile wmgmenu])
 PKG_CHECK_MODULES([WUTIL], [WUtil])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile tests/wmgmenu.test],
+		[chmod +x tests/wmgmenu.test])
 AC_OUTPUT

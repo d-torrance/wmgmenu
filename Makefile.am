@@ -10,4 +10,4 @@ EXTRA_DIST = NEWS.md README.md wmgmenu.test
 ${srcdir}/wmgmenu.1: | wmgmenu
 	help2man -N ./$| > $@
 
-TESTS = wmgmenu.test
+TESTS = tests/wmgmenu.test

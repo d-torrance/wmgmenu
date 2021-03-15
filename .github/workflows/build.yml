@@ -7,9 +7,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: sudo apt install libwings-dev libgnome-menu-3-dev
-             libcinnamon-menu-3-dev libmate-menu-dev
-             gnome-menus cinnamon-common mate-menus
-             enlightenment-data bats
+             libcinnamon-menu-3-dev libmate-menu-dev bats
       - name: Build (gnome-menus)
         run: |
           ./autogen.sh
